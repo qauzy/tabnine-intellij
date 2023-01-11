@@ -4,7 +4,6 @@ import com.intellij.ide.util.PropertiesComponent
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.PreloadingActivity
-import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.project.Project
 import com.tabnine.general.Utils.executeUIThreadWithDelay
 import com.tabnine.lifecycle.PluginInstalledNotifier
@@ -23,9 +22,9 @@ class GettingStartedManager : PreloadingActivity(), Disposable {
         val instance = GettingStartedManager()
     }
 
-    override fun preload(indicator: ProgressIndicator) {
-        registerForPluginInstalled()
-    }
+//    override fun dispose(indicator: ProgressIndicator) {
+//        registerForPluginInstalled()
+//    }
 
     private fun registerForPluginInstalled() {
         ApplicationManager.getApplication()

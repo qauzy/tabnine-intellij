@@ -58,7 +58,7 @@ public class CompletionPreview implements Disposable {
     caretListener = new InlineCaretListener(this);
     focusListener = new InlineFocusListener(this);
   }
-
+  //5
   public static TabNineCompletion createInstance(
       Editor editor, List<TabNineCompletion> completions, int offset) {
     CompletionPreview preview = getInstance(editor);
@@ -96,7 +96,7 @@ public class CompletionPreview implements Disposable {
     createPreview();
     completionsEventSender.sendToggleInlineSuggestionEvent(order, currentIndex);
   }
-
+  //6
   private TabNineCompletion createPreview() {
     TabNineCompletion completion = completions.get(currentIndex);
 

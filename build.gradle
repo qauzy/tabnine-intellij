@@ -2,15 +2,15 @@ import java.util.stream.Collectors
 
 plugins {
     id 'java'
-    id "org.jetbrains.kotlin.jvm" version "1.4.32"
-    id 'org.jetbrains.intellij' version '1.2.0'
+    id "org.jetbrains.kotlin.jvm" version "1.7.21"
+    id 'org.jetbrains.intellij' version "1.10.0"
     id 'org.jlleitschuh.gradle.ktlint' version "10.0.0"
     id 'org.jlleitschuh.gradle.ktlint-idea' version "10.0.0"
     id "com.github.sherter.google-java-format" version "0.9"
 }
 
 group 'com.tabnine'
-version project.hasProperty('externalVersion') ? project.externalVersion : '0.8.10'
+version project.hasProperty('externalVersion') ? project.externalVersion : '1.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -22,7 +22,9 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 repositories {
-    mavenCentral()
+    maven { setUrl("https://maven.aliyun.com/repository/public") }
+    maven {  setUrl("https://maven.aliyun.com/nexus/content/repositories/google") }
+    maven {  setUrl("https://maven.aliyun.com/nexus/content/repositories/jcenter")}
 }
 
 apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
@@ -49,7 +51,7 @@ test {
 }
 
 intellij {
-    version = '2019.3'
+    version = '2022.3.1'
     type = 'IC'
     updateSinceUntilBuild = false
 }
@@ -98,7 +100,7 @@ tasks {
 static def getIdeVersions(Project project) {
     def ideVersions = project.hasProperty('ideVersions') ?
             Arrays.asList(project.ideVersions.split(',')) :
-            ['IC-2019.3.5']
+            ['IC-2022.3.1']
     return ideVersions
 }
 

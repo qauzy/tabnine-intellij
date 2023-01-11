@@ -49,23 +49,23 @@ public class StaticConfig {
   public static final String REMOTE_VERSION_URL_PROPERTY = "TABNINE_REMOTE_VERSION_URL";
   public static final String REMOTE_BETA_VERSION_URL_PROPERTY = "TABNINE_REMOTE_BETA_VERSION_URL";
   public static final String LOG_FILE_PATH_PROPERTY = "TABNINE_LOG_FILE_PATH";
-  public static final Icon ICON = IconLoader.findIcon("/icons/tabnine-icon-13px.png");
+  public static final Icon ICON = IconLoader.findIcon("/icons/tabnine-icon-13px.png",StaticConfig.class);
   public static final String ICON_AND_NAME_PATH = "icons/tabnine-starter-13px.png";
   public static final Icon ICON_AND_NAME_STARTER =
-      IconLoader.findIcon("/icons/tabnine-starter-13px.png");
-  public static final Icon ICON_AND_NAME_PRO = IconLoader.findIcon("/icons/tabnine-pro-13px.png");
-  public static final Icon ICON_AND_NAME_TEAM = IconLoader.findIcon("/icons/tabnine-team-13px.png");
+      IconLoader.findIcon("/icons/tabnine-starter-13px.png",StaticConfig.class);
+  public static final Icon ICON_AND_NAME_PRO = IconLoader.findIcon("/icons/tabnine-pro-13px.png",StaticConfig.class);
+  public static final Icon ICON_AND_NAME_TEAM = IconLoader.findIcon("/icons/tabnine-team-13px.png",StaticConfig.class);
   public static final Icon ICON_AND_NAME_ENTERPRISE =
-      IconLoader.findIcon("/icons/tabnine-enterprise-13px.png");
-  public static final Icon NOTIFICATION_ICON = IconLoader.findIcon("/icons/tabnine-icon-13px.png");
+      IconLoader.findIcon("/icons/tabnine-enterprise-13px.png",StaticConfig.class);
+  public static final Icon NOTIFICATION_ICON = IconLoader.findIcon("/icons/tabnine-icon-13px.png",StaticConfig.class);
   public static final Icon CONNECTION_LOST_NOTIFICATION_ICON =
-      IconLoader.findIcon("/icons/tabnine-connection-lost-notification-icon.png");
+      IconLoader.findIcon("/icons/tabnine-connection-lost-notification-icon.png",StaticConfig.class);
   public static final Icon ICON_AND_NAME_CONNECTION_LOST_STARTER =
-      IconLoader.findIcon("/icons/tabnine-starter-connection-lost-13px.png");
+      IconLoader.findIcon("/icons/tabnine-starter-connection-lost-13px.png",StaticConfig.class);
   public static final Icon ICON_AND_NAME_CONNECTION_LOST_PRO =
-      IconLoader.findIcon("/icons/tabnine-pro-connection-lost-13px.png");
+      IconLoader.findIcon("/icons/tabnine-pro-connection-lost-13px.png",StaticConfig.class);
   public static final Icon ICON_AND_NAME_CONNECTION_LOST_ENTERPRISE =
-      IconLoader.findIcon("/icons/tabnine-enterprise-connection-lost-13px.png");
+      IconLoader.findIcon("/icons/tabnine-enterprise-connection-lost-13px.png",StaticConfig.class);
   public static final String LIMITATION_SYMBOL = "🔒";
   public static final Color PROMOTION_TEXT_COLOR = decode("#e12fee");
   public static final Color PROMOTION_LIGHT_TEXT_COLOR = decode("#FF99FF");

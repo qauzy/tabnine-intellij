@@ -50,7 +50,7 @@ public class InlineCompletionHandler {
     this.binaryRequestFacade = binaryRequestFacade;
     this.suggestionsModeService = suggestionsModeService;
   }
-
+  //1
   public void retrieveAndShowCompletion(
       @NotNull Editor editor,
       int offset,
@@ -62,6 +62,7 @@ public class InlineCompletionHandler {
     ObjectUtils.doIfNotNull(lastFetchAndRenderTask, task -> task.cancel(false));
     ObjectUtils.doIfNotNull(lastDebounceRenderTask, task -> task.cancel(false));
 
+    //如果缓存中有数据，直接从缓存中拿
     List<TabNineCompletion> cachedCompletions =
         InlineCompletionCache.getInstance().retrieveAdjustedCompletions(editor, userInput);
     if (!cachedCompletions.isEmpty()) {
@@ -69,6 +70,7 @@ public class InlineCompletionHandler {
       return;
     }
 
+    //缓存中没有数据，重新请求新数据
     ApplicationManager.getApplication()
         .invokeLater(
             () ->
@@ -96,7 +98,7 @@ public class InlineCompletionHandler {
     return editor.getCaretModel().getOffset()
         + (ApplicationManager.getApplication().isUnitTestMode() ? userInput.length() : 0);
   }
-
+  //2
   private void renderNewCompletions(
       @NotNull Editor editor,
       Integer tabSize,
@@ -107,10 +109,12 @@ public class InlineCompletionHandler {
         executeThread(
             () -> {
               CompletionTracker.updateLastCompletionRequestTime(editor);
+              //这里也是获取补全结果，为啥
               List<TabNineCompletion> beforeDebounceCompletions =
                   retrieveInlineCompletion(editor, offset, tabSize, completionAdjustment);
               long debounceTime = CompletionTracker.calcDebounceTime(editor, completionAdjustment);
 
+              //这边消除抖动,应该是防止频繁触发
               if (debounceTime == 0) {
                 rerenderCompletion(
                     editor,
@@ -125,7 +129,7 @@ public class InlineCompletionHandler {
                   editor, tabSize, offset, modificationStamp, completionAdjustment, debounceTime);
             });
   }
-
+  //o-3
   private void refetchCompletionsAfterDebounce(
       @NotNull Editor editor,
       Integer tabSize,
@@ -136,15 +140,17 @@ public class InlineCompletionHandler {
     lastDebounceRenderTask =
         executeThread(
             () -> {
+              //请求补全数据
               List<TabNineCompletion> completions =
                   retrieveInlineCompletion(editor, offset, tabSize, completionAdjustment);
+              //渲染结果
               rerenderCompletion(
                   editor, completions, offset, modificationStamp, completionAdjustment);
             },
             debounceTime,
             TimeUnit.MILLISECONDS);
   }
-
+  //3
   private void rerenderCompletion(
       @NotNull Editor editor,
       List<TabNineCompletion> completions,
@@ -187,7 +193,7 @@ public class InlineCompletionHandler {
     return suggestionsModeService.getSuggestionMode() == SuggestionsMode.HYBRID
         && completionAdjustment.getSuggestionTrigger() != SuggestionTrigger.LookAhead;
   }
-
+  //o-4
   private List<TabNineCompletion> retrieveInlineCompletion(
       @NotNull Editor editor,
       int offset,
@@ -206,7 +212,7 @@ public class InlineCompletionHandler {
         offset,
         completionAdjustment.getSuggestionTrigger());
   }
-
+  //4
   private void showInlineCompletion(
       @NotNull Editor editor,
       List<TabNineCompletion> completions,
@@ -217,8 +223,8 @@ public class InlineCompletionHandler {
     }
     InlineCompletionCache.getInstance().store(editor, completions);
 
-    TabNineCompletion displayedCompletion =
-        CompletionPreview.createInstance(editor, completions, offset);
+
+    TabNineCompletion displayedCompletion = CompletionPreview.createInstance(editor, completions, offset);
 
     if (displayedCompletion == null) {
       return;
@@ -264,7 +270,7 @@ public class InlineCompletionHandler {
       // swallow - nothing to do with this
     }
   }
-
+  //o-5
   private List<TabNineCompletion> createCompletions(
       AutocompleteResponse completions,
       @NotNull Document document,

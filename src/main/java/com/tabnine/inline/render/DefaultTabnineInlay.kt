@@ -51,7 +51,7 @@ class DefaultTabnineInlay(parent: Disposable) : TabnineInlay {
             blockInlay = null
         }
     }
-
+    //7
     override fun render(editor: Editor, completion: TabNineCompletion, offset: Int) {
         val lines = Utils.asLines(completion.suffix)
         if (lines.isEmpty()) return

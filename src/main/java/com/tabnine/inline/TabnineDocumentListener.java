@@ -41,7 +41,7 @@ public class TabnineDocumentListener implements BulkAwareDocumentListener {
       InlineCompletionCache.getInstance().clear(editor);
       return;
     }
-
+    //handler包含了请求的接口对象
     handler.retrieveAndShowCompletion(
         editor, offset, event.getNewFragment().toString(), new DefaultCompletionAdjustment());
   }

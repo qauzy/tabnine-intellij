@@ -46,7 +46,7 @@ public class CompletionFacade {
       return null;
     }
   }
-
+  //o-5
   @Nullable
   public AutocompleteResponse retrieveCompletions(
       @NotNull Editor editor,
@@ -68,7 +68,7 @@ public class CompletionFacade {
   public static String getFilename(@Nullable VirtualFile file) {
     return ObjectUtils.doIfNotNull(file, VirtualFile::getPath);
   }
-
+  //o-6
   @Nullable
   private AutocompleteResponse retrieveCompletions(
       @NotNull Editor editor,

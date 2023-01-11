@@ -58,7 +58,7 @@ public class CapabilitiesService {
           Long pid = binaryRequestFacade.pid();
           boolean expiredSinceLastRefresh =
               !lastRefresh.isPresent()
-                  || System.currentTimeMillis() - lastRefresh.get() >= REFRESH_EVERY_MS;
+                  || System.currentTimeMillis () - lastRefresh.get() >= REFRESH_EVERY_MS;
 
           boolean pidChanged =
               !lastPid.isPresent() || lastPid.get() == null || !lastPid.get().equals(pid);
